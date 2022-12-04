@@ -5,26 +5,31 @@ from foodClass import Food, drawGrid
 def main():
     pygame.init()
 
+    # Ruudun ja pelin sisäisen kellon luonti
     clock = pygame.time.Clock()
     screen = pygame.display.set_mode((screen_width, screen_height), 0, 32)
 
+    #Pelialueen luonti
     surface = pygame.Surface(screen.get_size())
     surface = surface.convert()
     drawGrid(surface)
 
+    # Madon ja Ruokakohteen luonti
     snake = Snake()
     food = Food()
 
     font = pygame.font.SysFont("monospace",16)
-
     score = 0
+
     while (True):
 
-        clock.tick(10)
+        # Pelin alustaminen
+        clock.tick(8)
         snake.handle_keys()
         drawGrid(surface)
         snake.move()
 
+        # Ruokakohteen syöminen
         if snake.get_head_position() == food.position:
             snake.length += 1
             snake.score += 1

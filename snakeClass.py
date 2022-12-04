@@ -2,19 +2,23 @@ import pygame
 import sys
 import random
 
-screen_width = 480
-screen_height = 480
+# Ruudun määrittely
+screen_width = 600
+screen_height = 600
 
+# Pelialueen määrittely
 gridsize = 20
 grid_width = screen_width/gridsize
 grid_height = screen_height/gridsize
 
+# Suuntien määrittely
 up = (0,-1)
 down = (0,1)
 left = (-1,0)
 right = (1,0)
 
 class Snake():
+    # Madon alustaminen
     def __init__(self):
         self.length = 1
         self.positions = [((screen_width/2), (screen_height/2))]
@@ -25,29 +29,38 @@ class Snake():
     def get_head_position(self):
         return self.positions[0]
 
+    # Kääntymisfunktio
     def turn(self, point):
         if self.length > 1 and (point[0]*-1, point[1]*-1) == self.direction:
             return
         else:
             self.direction = point
 
+    # Liikkumisfunktio
     def move(self):
         cur = self.get_head_position()
         x,y = self.direction
         new = (((cur[0]+(x*gridsize))%screen_width), (cur[1]+(y*gridsize))%screen_height)
+
         if len(self.positions) > 2 and new in self.positions[2:]:
+            self.reset()
+        elif new[0] == (x*gridsize)%screen_width:
+            self.reset()
+        elif new[1] == (y*gridsize)%screen_height:
             self.reset()
         else:
             self.positions.insert(0,new)
             if len(self.positions) > self.length:
                 self.positions.pop()
 
+    # Pelin (uudelleen) aloittaminen
     def reset(self):
         self.length = 1
         self.positions = [((screen_width/2), (screen_height/2))]
         self.direction = random.choice([up, down, left, right])
         self.score = 0
 
+    # Madon luonti
     def draw(self,surface):
         for p in self.positions:
             r = pygame.Rect((p[0], p[1]), (gridsize,gridsize))
