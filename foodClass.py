@@ -6,7 +6,7 @@ class Food():
     # Ruokakohteen alustaminen
     def __init__(self):
         self.position = (0,0)
-        self.color = (223, 163, 49)
+        self.color = (255, 0, 0)
         self.randomize_position()
 
     def randomize_position(self):
@@ -16,7 +16,7 @@ class Food():
     def draw(self, surface):
         r = pygame.Rect((self.position[0], self.position[1]), (gridsize, gridsize))
         pygame.draw.rect(surface, self.color, r)
-        pygame.draw.rect(surface, (93, 216, 228), r, 1)
+        pygame.draw.rect(surface, (0,153,0), r, 1)
 
 #Pelialueen luonti
 def drawGrid(surface):
@@ -24,7 +24,7 @@ def drawGrid(surface):
         for x in range(0, int(grid_width)):
             if (x+y)%2 == 0:
                 r = pygame.Rect((x*gridsize, y*gridsize), (gridsize,gridsize))
-                pygame.draw.rect(surface,(93,216,228), r)
+                pygame.draw.rect(surface,(0,153,0), r)
             else:
                 rr = pygame.Rect((x*gridsize, y*gridsize), (gridsize,gridsize))
-                pygame.draw.rect(surface, (84,194,205), rr)
+                pygame.draw.rect(surface, (0,102,0), rr)
