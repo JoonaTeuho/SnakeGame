@@ -1,6 +1,5 @@
 import pygame
 import sys
-import random
 
 # Ruudun määrittely
 screen_width = 600
@@ -22,9 +21,10 @@ class Snake():
     def __init__(self):
         self.length = 1
         self.positions = [((screen_width/2), (screen_height/2))]
-        self.direction = random.choice([up, down, left, right])
+        self.direction = (0,0)
         self.color = (255, 255, 0)
         self.score = 0
+        self.high_score = 0
 
     def get_head_position(self):
         return self.positions[0]
@@ -57,7 +57,9 @@ class Snake():
     def reset(self):
         self.length = 1
         self.positions = [((screen_width/2), (screen_height/2))]
-        self.direction = random.choice([up, down, left, right])
+        self.direction = (0,0)
+        if self.score > self.high_score:
+            self.high_score = self.score
         self.score = 0
 
     # Madon luonti

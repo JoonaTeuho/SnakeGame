@@ -18,13 +18,12 @@ def main():
     snake = Snake()
     food = Food()
 
-    font = pygame.font.SysFont("monospace",16)
-    score = 0
+    font = pygame.font.SysFont("impact",20)
 
     while (True):
 
         # Pelin alustaminen
-        clock.tick(8)
+        clock.tick(7)
         snake.handle_keys()
         drawGrid(surface)
         snake.move()
@@ -39,7 +38,9 @@ def main():
         food.draw(surface)
         screen.blit(surface, (0,0))
         text = font.render("Score {0}".format(snake.score), 1, (0,0,0))
+        high_score = font.render("High score {0}".format(snake.high_score), 1, (0,0,0))
         screen.blit(text, (5,10))
+        screen.blit(high_score, (5,30))
         pygame.display.update()
 
 main()
