@@ -20,7 +20,7 @@ class Snake():
     # Madon alustaminen
     def __init__(self):
         self.length = 1
-        self.positions = [((screen_width/2), (screen_height/2))]
+        self.positions = [(300, 300)]
         self.direction = (0,0)
         self.color = (255, 255, 0)
         self.score = 0
@@ -58,6 +58,8 @@ class Snake():
         self.length = 1
         self.positions = [((screen_width/2), (screen_height/2))]
         self.direction = (0,0)
+
+        #High scoren määrittely
         if self.score > self.high_score:
             self.high_score = self.score
         self.score = 0
